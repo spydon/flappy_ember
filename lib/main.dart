@@ -5,8 +5,6 @@ import 'game.dart';
 
 void main() {
   runApp(
-    GameWidget(
-      game: FlappyEmber(),
-    ),
+    GameWidget(game: FlappyEmber()),
   );
 }

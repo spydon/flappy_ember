@@ -5,16 +5,12 @@ import 'package:flutter/widgets.dart';
 
 import 'game.dart';
 
-enum PlayerState {
-  idle,
-  shooting,
-}
-
 class Player extends SpriteAnimationComponent
     with HasGameRef<FlappyEmber>, CollisionCallbacks {
-  Player() : super(size: Vector2.all(50), anchor: Anchor.center);
+  Player() : super(size: Vector2.all(100), anchor: Anchor.center);
 
-  double fallingSpeed = 200;
+  final _fallingSpeed = 400;
+  bool _isDying = false;
 
   @override
   Future<void> onLoad() async {
@@ -35,19 +31,36 @@ class Player extends SpriteAnimationComponent
   @override
   void update(double dt) {
     super.update(dt);
-    position.y += dt * fallingSpeed;
+    position.y += dt * _fallingSpeed;
   }
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
-    gameRef.gameOver();
+    if (!_isDying) {
+      _isDying = true;
+      addAll([
+        ScaleEffect.to(
+          Vector2(0.0, 0.0),
+          EffectController(
+            duration: 2.0,
+            curve: Curves.bounceInOut,
+          ),
+        ),
+        RotateEffect.by(
+          9,
+          EffectController(
+            duration: 2.0,
+          ),
+        )..onFinishCallback = gameRef.gameOver,
+      ]);
+    }
   }
 
   void fly() {
     add(
       MoveByEffect(
-        Vector2(0, -100),
+        Vector2(0, -200),
         EffectController(
           duration: 0.5,
           curve: Curves.decelerate,

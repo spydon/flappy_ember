@@ -55,7 +55,7 @@ packages:
     description:
       path: "packages/flame"
       ref: main
-      resolved-ref: aeaf9999b0b4f69e394063d3af8e18f67dff5ed9
+      resolved-ref: e239896624f1e2736de83148ff172ca1b0f97dae
       url: "https://github.com/flame-engine/flame.git"
     source: git
     version: "1.1.1"
