@@ -6,9 +6,8 @@ class Player extends SpriteAnimationComponent {
 
   @override
   Future<void> onLoad() async {
-    final image = await Flame.images.load('ember.png');
-    SpriteAnimation.fromFrameData(
-      image,
+    animation = SpriteAnimation.fromFrameData(
+      await Flame.images.load('ember.png'),
       SpriteAnimationData.sequenced(
         amount: 3,
         textureSize: Vector2.all(16),
