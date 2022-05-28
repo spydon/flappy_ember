@@ -18,10 +18,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flame_lint: ^0.0.1
+  flame_lint:
+    git:
+      url: https://github.com/flame-engine/flame.git
+      ref: main
+      path: packages/flame_lint
+
 
 flutter:
-  uses-material-design: true
   assets:
-    - assets/images/parallax/
+    - assets/images/
     - assets/images/boxes/

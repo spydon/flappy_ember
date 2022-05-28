@@ -5,12 +5,15 @@ import 'package:flame/components.dart';
 import 'box.dart';
 import 'game.dart';
 
-class BoxStack extends PositionComponent with HasGameRef<FlappyEmberGame> {
+class BoxStack extends PositionComponent with HasGameRef<FlappyEmber> {
+  BoxStack({required this.isBottom});
+
+  final bool isBottom;
+
   static final Random _rng = Random();
 
   @override
   Future<void> onLoad() async {
-    final isBottom = _rng.nextBool();
     position.x = gameRef.size.x;
     final gameHeight = gameRef.size.y;
     final boxHeight = Box.initialSize.y;

@@ -1,68 +1,47 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
-import 'package:flutter/widgets.dart';
-
-import 'game.dart';
+import 'package:flame/flame.dart';
+import 'package:flappy_ember/game.dart';
+import 'package:flutter/material.dart';
 
 class Player extends SpriteAnimationComponent
-    with HasGameRef<FlappyEmber>, CollisionCallbacks {
-  Player() : super(size: Vector2.all(100), anchor: Anchor.center);
+    with HasGameRef<FlappyEmberGame>, CollisionCallbacks {
+  Player() : super(size: Vector2.all(50), position: Vector2.all(100));
 
-  final _fallingSpeed = 400;
-  bool _isDying = false;
+  double velocity = 200;
 
   @override
   Future<void> onLoad() async {
-    position.x = size.x * 3;
-    position.y = gameRef.size.y / 2;
-    animation = await gameRef.loadSpriteAnimation(
-      'ember.png',
+    animation = SpriteAnimation.fromFrameData(
+      await Flame.images.load('ember.png'),
       SpriteAnimationData.sequenced(
-        amount: 3,
+        amount: 4,
         textureSize: Vector2.all(16),
         stepTime: 0.12,
       ),
     );
     add(CircleHitbox());
-    debugMode = true;
   }
 
   @override
   void update(double dt) {
     super.update(dt);
-    position.y += dt * _fallingSpeed;
+    position.y += velocity * dt;
   }
 
   @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollision(intersectionPoints, other);
-    if (!_isDying) {
-      _isDying = true;
-      addAll([
-        ScaleEffect.to(
-          Vector2(0.0, 0.0),
-          EffectController(
-            duration: 2.0,
-            curve: Curves.bounceInOut,
-          ),
-        ),
-        RotateEffect.by(
-          9,
-          EffectController(
-            duration: 2.0,
-          ),
-        )..onFinishCallback = gameRef.gameOver,
-      ]);
-    }
+  void onCollisionStart(Set<Vector2> _, PositionComponent other) {
+    super.onCollisionStart(_, other);
+    gameRef.gameOver = true;
   }
 
   void fly() {
     add(
       MoveByEffect(
-        Vector2(0, -200),
+        Vector2(0, -100),
         EffectController(
-          duration: 0.5,
+          duration: 0.2,
           curve: Curves.decelerate,
         ),
       ),

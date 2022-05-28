@@ -55,16 +55,18 @@ packages:
     description:
       path: "packages/flame"
       ref: main
-      resolved-ref: e239896624f1e2736de83148ff172ca1b0f97dae
+      resolved-ref: "79d823634a5af2a4563cadd0c875e9e6d9b11af8"
       url: "https://github.com/flame-engine/flame.git"
     source: git
     version: "1.1.1"
   flame_lint:
     dependency: "direct dev"
     description:
-      name: flame_lint
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "packages/flame_lint"
+      ref: main
+      resolved-ref: dd28183bc4ebe2ea2f80d1dab3b5ab22d11b8382
+      url: "https://github.com/flame-engine/flame.git"
+    source: git
     version: "0.0.1"
   flutter:
     dependency: "direct main"

@@ -9,7 +9,7 @@ class Player extends SpriteAnimationComponent {
     animation = SpriteAnimation.fromFrameData(
       await Flame.images.load('ember.png'),
       SpriteAnimationData.sequenced(
-        amount: 3,
+        amount: 4,
         textureSize: Vector2.all(16),
         stepTime: 0.12,
       ),
