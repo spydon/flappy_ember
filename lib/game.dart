@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 
-class FlappyEmber extends FlameGame {
-  FlappyEmber();
+class FlappyEmberGame extends FlameGame {
+  FlappyEmberGame();
 
   @override
   Future<void> onLoad() async {
