@@ -55,7 +55,7 @@ packages:
     description:
       path: "packages/flame"
       ref: main
-      resolved-ref: e239896624f1e2736de83148ff172ca1b0f97dae
+      resolved-ref: "69214827a0edb563468951256eccecab408f89df"
       url: "https://github.com/flame-engine/flame.git"
     source: git
     version: "1.1.1"
@@ -167,4 +167,4 @@ packages:
     version: "2.1.2"
 sdks:
   dart: ">=2.17.0 <3.0.0"
-  flutter: ">=2.10.0"
+  flutter: ">=3.0.0"
